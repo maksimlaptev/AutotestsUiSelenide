@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>uiexample</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <javafaker.version>1.0.2</javafaker.version>
+        <selenide.version>6.12.4</selenide.version>
+        <alure.version>2.14.0</alure.version>
+        <aspectj.version>1.9.6</aspectj.version>
+        <owner.version>1.0.12</owner.version>
+        <slf4j-simple.version>1.7.21</slf4j-simple.version>
+        <testng.version>7.0.0</testng.version>
+        <hamcrest.version>2.2</hamcrest.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
+        <allure.results.directory>/target/allure-results</allure.results.directory>
+        <allure.reports.directory>/target/allure-reports</allure.reports.directory>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.14.0</version>
+        </dependency>
+        <!--Others Dependencies-->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-library</artifactId>
+            <version>${hamcrest.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>${javafaker.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aeonbits.owner</groupId>
+            <artifactId>owner</artifactId>
+            <version>${owner.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                        <properties>
+                            <property>
+                                <name>usedefaultlisteners</name>
+                                <value>false</value>
+                            </property>
+                        </properties>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.10.0</version>
+                <configuration>
+                    <resultsDirectory>${allure.results.directory}</resultsDirectory>
+                    <reportDirectory>${allure.reports.directory}</reportDirectory>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>
